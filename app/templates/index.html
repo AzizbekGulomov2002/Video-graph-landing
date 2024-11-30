@@ -1,0 +1,429 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Videograph Template">
+    <meta name="keywords" content="Videograph, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Videograph | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+  <!-- Header Section Begin -->
+  <header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="header__logo">
+                    <a href="/"><img src="{% static 'img/logo.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="header__nav__option">
+                    <nav class="header__nav__menu mobile-menu">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'portfolios' %}">Portfolio</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li>
+                            <li class="active"><a href="{% url 'contacts' %}">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="header__nav__social">
+                        {% for contact in contacts %}
+                            {% if contact.facebook %}
+                                <a href="{{ contact.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                            {% endif %}
+                            {% if contact.twitter %}
+                                <a href="{{ contact.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                            {% endif %}
+                            {% if contact.internet %}
+                                <a href="{{ contact.internet }}" target="_blank"><i class="fa fa-dribbble"></i></a>
+                            {% endif %}
+                            {% if contact.instagram %}
+                                <a href="{{ contact.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
+                            {% endif %}
+                            {% if contact.email %}
+                                <a href="mailto:{{ contact.email }}" target="_blank"><i class="fa fa-envelope"></i></a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+</header>
+<!-- Header End -->
+
+
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider owl-carousel">
+        {% for slide in slides %}
+        <div class="hero__item set-bg" data-setbg="{% static 'img/hero/hero-1.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <span>{{ slide.title }}</span>
+                            <h2>{{ slide.name }}</h2>
+                            <a href="#" class="primary-btn">See more about us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- Hero Section End -->
+
+
+
+<!-- Services Section Begin -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="services__title">
+                    <div class="section-title">
+                        <span>Our services</span>
+                        <h2>What We Do?</h2>
+                    </div>
+                    <p>If you hire a videographer of our team, you will get a video professional to make a custom
+                        video for your business and, once the project is over.</p>
+                    <a href="#" class="primary-btn">View all services</a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    {% for service in services %}
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="services__item">
+                            <div class="services__item__icon">
+                                <img src="{{ service.icon.url }}" alt="{{ service.name }}">
+                            </div>
+                            <h4>{{ service.name }}</h4>
+                            <p>{{ service.title }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Section End -->
+
+
+
+
+<!-- Work Section Begin -->
+<section class="work">
+    <div class="work__gallery">
+        <div class="grid-sizer"></div>
+        {% for item in gallery_items %}
+        <div class="work__item {{ item.size_class }} set-bg" data-setbg="{{ item.image.url }}">
+            <a href="{{ item.video_url }}" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+            {% if item.title %}
+            <div class="work__item__hover">
+                <h4>{{ item.title }}</h4>
+                <ul>
+                    <li>{{ item.video_type }}</li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- Work Section End -->
+
+
+
+<!-- Counter Section Begin -->
+<section class="counter">
+    <div class="container">
+        <div class="counter__content">
+            <div class="row">
+                {% for stat in statistics %}
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="counter__item">
+                        <div class="counter__item__text">
+                            {% if stat.icon %}
+                            <img src="{{ stat.icon.url }}" alt="{{ stat.name }}">
+                            {% endif %}
+                            <h2 class="counter_num">{{ stat.count|floatformat:0 }}</h2>
+                            <p>{{ stat.name }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Counter Section End -->
+
+
+{% comment %} <!-- Gallery Section Begin -->
+<section class="gallery">
+    <div class="gallery__container">
+        <div class="grid-sizer"></div>
+        {% for item in gallery %}
+        <div class="gallery__item {{ item.size_class }}__item set-bg" data-setbg="{{ item.image.url }}">
+            {% if item.video_url %}
+            <a href="{{ item.video_url }}" class="play-btn video-popup">
+                <i class="fa fa-play"></i>
+            </a>
+            {% endif %}
+            <div class="gallery__item__hover">
+                <h4>{{ item.title }}</h4>
+                <ul>
+                    <li>Category: {{ item.size_class }}</li>
+                    <li>Video</li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section> {% endcomment %}
+<!-- Gallery Section End -->
+
+
+<!-- Team Section Begin -->
+<section class="team spad set-bg" data-setbg="{% static 'img/team-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title team__title">
+                    <span>Nice to meet</span>
+                    <h2>OUR Team</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for member in teams %}
+            <div class="col-lg-3 col-md-6 col-sm-6 p-0">
+                <div class="team__item set-bg" data-setbg="{{ member.image.url }}">
+                    <div class="team__item__text">
+                        <h4>{{ member.full_name }}</h4>
+                        <p>{{ member.position }}</p>
+                        <div class="team__item__social">
+                            {% if member.facebook %}
+                            <a href="{{ member.facebook }}"><i class="fa fa-facebook"></i></a>
+                            {% endif %}
+                            {% if member.twitter %}
+                            <a href="{{ member.twitter }}"><i class="fa fa-twitter"></i></a>
+                            {% endif %}
+                            {% if member.internet %}
+                            <a href="{{ member.internet }}"><i class="fa fa-globe"></i></a>
+                            {% endif %}
+                            {% if member.instagram %}
+                            <a href="{{ member.instagram }}"><i class="fa fa-instagram"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-lg-12 p-0">
+                <div class="team__btn">
+                    <a href="#" class="primary-btn">Meet Our Team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Team Section End -->
+
+
+
+<!-- Latest Blog Section Begin -->
+<section class="latest spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title center-title">
+                    <span>Our Blog</span>
+                    <h2>Blog Update</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="latest__slider owl-carousel">
+                {% for blog in blogs %}
+                <div class="col-lg-4">
+                    <div class="blog__item latest__item"
+                         style="background: url(
+                            {% if blog.image and blog.image.url %}
+                                {{ blog.image.url }}
+                            {% else %}
+                                /static/img/default-blog.jpg
+                            {% endif %}
+                         ) no-repeat center center; background-size: cover;">
+                        <h4>{{ blog.name }}</h4>
+                        <ul>
+                            <li>{{ blog.date|date:"F d, Y" }}</li>
+                            <li>05 Comments</li> <!-- Replace with dynamic comments count if available -->
+                        </ul>
+                        <p>{{ blog.text|truncatechars:100 }}</p>
+                        <a href="blogs/">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Latest Blog Section End -->
+
+
+
+    <!-- Call To Action Section Begin -->
+    <section class="callto spad set-bg" data-setbg="{% static 'img/callto-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="callto__text">
+                        <h2>Fresh Ideas, Fresh Moments Giving Wings to your Stories.</h2>
+                        <p>INC5000, Best places to work 2019</p>
+                        <a href="#">Start your stories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Call To Action Section End -->
+
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer__top">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer__top__logo">
+                        <a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer__top__social">
+                        {% if about_us.facebook %}
+                        <a href="{{ about_us.facebook }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                        {% endif %}
+                        {% if about_us.twitter %}
+                        <a href="{{ about_us.twitter }}" target="_blank"><i class="fa fa-twitter"></i></a>
+                        {% endif %}
+                        {% if about_us.internet %}
+                        <a href="{{ about_us.internet }}" target="_blank"><i class="fa fa-dribbble"></i></a>
+                        {% endif %}
+                        {% if about_us.instagram %}
+                        <a href="{{ about_us.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a>
+                        {% endif %}
+                        {% if about_us.email %}
+                        <a href="mailto:{{ about_us.email }}"><i class="fa fa-envelope"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__option">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__option__item">
+                        <h5>About us</h5>
+                        <p>{{ about_us.text|truncatechars:200 }}</p>
+                        <a href="#" class="read__more">Read more <span class="arrow_right"></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3">
+                    <div class="footer__option__item">
+                        <h5>Who we are</h5>
+                        <ul>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Locations</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3">
+                    <div class="footer__option__item">
+                        <h5>Our work</h5>
+                        <ul>
+                            <li><a href="#">Feature</a></li>
+                            <li><a href="#">Latest</a></li>
+                            <li><a href="#">Browse Archive</a></li>
+                            <li><a href="#">Video for web</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__option__item">
+                        <h5>Newsletter</h5>
+                        <p>Stay updated with our latest news and updates.</p>
+                        <form action="#">
+                            <input type="email" placeholder="Email">
+                            <button type="submit"><i class="fa fa-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p class="footer__copyright__text">Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        by <a href="https://ats-systems.net" target="_blank">ATS Group</a>
+                    </p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
