@@ -27,41 +27,23 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
-# Application definition
-
-INSTALLED_APPS = [
-    'jazzmin',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'app',
-
-    'rest_framework',
-    'drf_yasg',
-    'corsheaders',
-]
-
-
-
 CSRF_TRUSTED_ORIGINS = [
-    "http://*",
-    "https://*"
-]
-
-ALLOWED_HOSTS = ["*"]
-
-
-CORS_ALLOW_ALL_ORIGINS = True
-
-CORS_ALLOWED_ORIGINS = [
+    "https://videograph.pythonanywhere.com",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
+    "http://localhost",
+    "http://127.0.0.1"
 ]
 
+CORS_ALLOW_ALL_ORIGINS = False  # Bu False bo'lishi kerak, faqat kerakli domenlarni ruxsat berish uchun.
+
+CORS_ALLOWED_ORIGINS = [
+    "https://videograph.pythonanywhere.com",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://localhost",
+    "http://127.0.0.1"
+]
 
 CORS_ALLOW_METHODS = [
     "GET",
@@ -83,6 +65,32 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
+
+# Application definition
+
+INSTALLED_APPS = [
+    'jazzmin',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'app',
+
+    'rest_framework',
+    'drf_yasg',
+    'corsheaders',
+]
+
+
+
+
+
+ALLOWED_HOSTS = ["*"]
+
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 MIDDLEWARE = [
